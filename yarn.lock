@@ -193,6 +193,13 @@
     "@swc/counter" "^0.1.3"
     tslib "^2.4.0"
 
+"@swc/plugin-styled-components@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@swc/plugin-styled-components/-/plugin-styled-components-3.0.2.tgz#8b0d30716e9ce5c77a6eaedf82db107c6c6ad115"
+  integrity sha512-ga3065ACLCHBfE3h6bsXABK3usFyqGr0BB/EWReGWu3igUinI6IqK50g76xEqcaEgF6ywM0cmrZ7ARqPPVOe+w==
+  dependencies:
+    "@swc/counter" "^0.1.3"
+
 "@types/hoist-non-react-statics@*":
   version "3.3.5"
   resolved "https://registry.yarnpkg.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.5.tgz#dab7867ef789d87e2b4b0003c9d65c49cc44a494"
