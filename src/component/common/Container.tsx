@@ -9,7 +9,7 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     @media (max-width: 767px) {
-        padding-left: 24px;
-        padding-right: 24px;
+        padding: 24px;
+        padding-bottom: 64px;
     }
 `;

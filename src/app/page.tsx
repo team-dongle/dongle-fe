@@ -1,25 +1,40 @@
 "use client";
 
-import styled from "styled-components";
+import { Container } from "@/component/common/Container";
+import Card from "@/component/ui/Card";
+import { styled } from "styled-components";
 
 export default function Home() {
     return (
-        <Container>
-            <h1>동글</h1>
-        </Container>
+        <MainContainer>
+            <MainCol>
+                <Card />
+                <Card />
+                <Card />
+            </MainCol>
+            <MainCol>
+                <Card />
+                <Card />
+                <Card />
+            </MainCol>
+            <MainCol>
+                <Card />
+                <Card />
+                <Card />
+            </MainCol>
+        </MainContainer>
     );
 }
 
-const Container = styled.div`
-    width: 100%;
-    height: 100vh;
-    padding-left: 128px;
-    padding-right: 128px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    @media (max-width: 767px) {
-        padding-left: 24px;
-        padding-right: 24px;
+const MainContainer = styled(Container)`
+    @media (max-width: 768px) {
+        flex-direction: column;
     }
+    gap: 16px;
+`;
+
+const MainCol = styled.ul`
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 `;

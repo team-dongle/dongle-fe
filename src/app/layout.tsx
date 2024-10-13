@@ -26,7 +26,7 @@ export default function RootLayout({
             <body className={pretendard.className}>
                 <StyledComponentsRegistry>
                     <Header />
-                    <div className="h-screen">{children}</div>
+                    <div className="min-h-screen md:h-screen">{children}</div>
                     <Footer />
                 </StyledComponentsRegistry>
             </body>
