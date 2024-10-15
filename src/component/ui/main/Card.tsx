@@ -35,7 +35,6 @@ const Border = styled.li`
     border-radius: 10px;
     border: 1px solid #f4f4f4;
     padding: 24px;
-    gap: 10px;
     justify-content: space-between;
 `;
 

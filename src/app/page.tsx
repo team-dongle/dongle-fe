@@ -1,40 +1,73 @@
 "use client";
 
 import { Container } from "@/component/common/Container";
-import Card from "@/component/ui/Card";
+import { useState } from "react";
 import { styled } from "styled-components";
+import Card from "@/component/ui/main/Card";
+import Category from "@/component/ui/main/Category";
+import CategoryInput from "@/component/ui/main/CategoryInput";
+import Filter from "@/component/ui/main/Filter";
+import { clubNames } from "@/constants/mocks";
 
 export default function Home() {
+    const [currentCategory, setCurrentCategory] = useState<number[]>([]);
     return (
-        <MainContainer>
-            <MainCol>
-                <Card />
-                <Card />
-                <Card />
-            </MainCol>
-            <MainCol>
-                <Card />
-                <Card />
-                <Card />
-            </MainCol>
-            <MainCol>
-                <Card />
-                <Card />
-                <Card />
-            </MainCol>
-        </MainContainer>
+        <Container>
+            <CategoryInput />
+            <CategoryAndFilter>
+                <Category
+                    categoryState={currentCategory}
+                    setState={setCurrentCategory}
+                />
+                <Filter />
+            </CategoryAndFilter>
+            <MainContainer>
+                <MainUl>
+                    {clubNames.map((e, index) => {
+                        return <Card key={index} />;
+                    })}
+                </MainUl>
+            </MainContainer>
+        </Container>
     );
 }
 
-const MainContainer = styled(Container)`
-    @media (max-width: 768px) {
-        flex-direction: column;
-    }
-    gap: 16px;
-`;
+const MainContainer = styled.div`
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 
-const MainCol = styled.ul`
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    width: 100%;
+    height: auto;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     gap: 24px;
+`;
+
+const MainUl = styled.ul`
+    width: 100%;
+    gap: 16px;
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(1, 1fr);
+    @media (min-width: 640px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+`;
+
+const CategoryAndFilter = styled.div`
+    gap: 32px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 24px;
 `;
