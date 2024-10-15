@@ -8,22 +8,26 @@ import Category from "@/component/ui/main/Category";
 import CategoryInput from "@/component/ui/main/CategoryInput";
 import Filter from "@/component/ui/main/Filter";
 import { clubNames } from "@/constants/mocks";
+import { filterOptions } from "@/types/main";
 
 export default function Home() {
-    const [currentCategory, setCurrentCategory] = useState<number[]>([]);
+    const [filterOptions, setFilterOptions] = useState<filterOptions>({
+        category: [],
+        isRecruit: false,
+    });
     return (
         <Container>
             <CategoryInput />
             <CategoryAndFilter>
                 <Category
-                    categoryState={currentCategory}
-                    setState={setCurrentCategory}
+                    filterOptions={filterOptions}
+                    setState={setFilterOptions}
                 />
                 <Filter />
             </CategoryAndFilter>
             <MainContainer>
                 <MainUl>
-                    {clubNames.map((e, index) => {
+                    {clubNames.map((index) => {
                         return <Card key={index} />;
                     })}
                 </MainUl>

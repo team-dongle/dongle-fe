@@ -1,10 +1,13 @@
 import React from "react";
 import FilterIcon from "@/assets/images/FilterIcon.svg";
 import styled from "styled-components";
+import useModal from "@/hooks/userModal";
 
 const Filter = () => {
+    const { visible, modalRef, toggleModal, closeModal, openModal } =
+        useModal();
     return (
-        <FilterContainer>
+        <FilterContainer ref={modalRef} onClick={openModal}>
             필터
             <FilterIcon />
         </FilterContainer>

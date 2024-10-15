@@ -1,38 +1,48 @@
 import { categoryList } from "@/constants/categoryList";
+import { filterOptions } from "@/types/main";
 import React, { Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
 
 interface props {
-    categoryState: number[];
-    setState: Dispatch<SetStateAction<number[]>>;
+    filterOptions: filterOptions;
+    setState: Dispatch<SetStateAction<filterOptions>>;
 }
-const Category = ({ categoryState, setState }: props) => {
-    const setCategory = (index: number) => {
-        if (index == 0) {
-            //전체 클릭 시
-            console.log(categoryState[0]);
-            if (categoryState[0] !== undefined) setState([]);
-            else setState(Array.from({ length: 8 }, (_, index) => index));
-        } else if (categoryState?.includes(index)) {
-            setState((prev) => prev!.filter((e) => e !== index));
-        } else {
-            setState((prev) => [...prev!, index]);
-        }
+const Category = ({ filterOptions, setState }: props) => {
+    const setCategory = (category: string) => {
+        if (category == "전체") {
+            console.log(filterOptions);
+            setState((prev) => ({
+                ...prev,
+                category: categoryList,
+            }));
+            if (filterOptions.category.includes("전체"))
+                setState((prev) => ({
+                    ...prev,
+                    category: [],
+                }));
+        } else
+            setState((prev) => ({
+                ...prev,
+                category: prev.category.includes(category)
+                    ? prev.category.filter((c) => c !== category)
+                    : [...prev.category, category],
+            }));
     };
+
     return (
         <CategoryUl>
-            {categoryList.map((e, index) => {
+            {categoryList.map((category, index) => {
                 return (
-                    <React.Fragment key={e + index}>
+                    <React.Fragment key={category + index}>
                         <CategoryLi
-                            onClick={() => setCategory(index)}
+                            onClick={() => setCategory(category)}
                             $isSelected={
-                                categoryState == null
+                                filterOptions == null
                                     ? false
-                                    : categoryState?.includes(index)
+                                    : filterOptions.category?.includes(category)
                             }
                         >
-                            {e}
+                            {category}
                         </CategoryLi>
                         <Line>{index < categoryList.length - 1 && <>|</>}</Line>
                     </React.Fragment>
