@@ -1,29 +1,37 @@
 "use client";
 
 import { Container } from "@/component/common/Container";
-import { useState } from "react";
 import { styled } from "styled-components";
 import Card from "@/component/ui/main/Card";
 import Category from "@/component/ui/main/Category";
 import CategoryInput from "@/component/ui/main/CategoryInput";
 import Filter from "@/component/ui/main/Filter";
 import { clubNames } from "@/constants/mocks";
-import { filterOptions } from "@/types/main";
+import { useFilter } from "@/hooks/useFilter";
 
 export default function Home() {
-    const [filterOptions, setFilterOptions] = useState<filterOptions>({
-        category: [],
-        isRecruit: false,
-    });
+    const {
+        filterOptions,
+        setCategory,
+        setRecruiting,
+        setNonRecruiting,
+        setFilterOptions,
+    } = useFilter();
     return (
         <Container>
             <CategoryInput />
             <CategoryAndFilter>
                 <Category
                     filterOptions={filterOptions}
-                    setState={setFilterOptions}
+                    setCategory={setCategory}
                 />
-                <Filter />
+                <Filter
+                    filterOptions={filterOptions}
+                    setCategory={setCategory}
+                    setRecruiting={setRecruiting}
+                    setNonRecruit={setNonRecruiting}
+                    setFilterOptions={setFilterOptions}
+                />
             </CategoryAndFilter>
             <MainContainer>
                 <MainUl>

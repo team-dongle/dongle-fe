@@ -27,7 +27,16 @@ function useModal() {
         const current = modalRef.current;
         if (visible && current && !current.contains(e.target as Node))
             setVisible(false);
+        else {
+            e.stopPropagation();
+        }
     };
-    return { visible, modalRef, toggleModal, closeModal, openModal };
+    return {
+        visible,
+        modalRef,
+        toggleModal,
+        closeModal,
+        openModal,
+    };
 }
 export default useModal;

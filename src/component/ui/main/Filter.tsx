@@ -1,15 +1,40 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import FilterIcon from "@/assets/images/FilterIcon.svg";
 import styled from "styled-components";
-import useModal from "@/hooks/userModal";
+import useModal from "@/hooks/useModal";
+import FilterDetail from "./FilterDetail";
+import { filterOptions } from "@/types/main";
 
-const Filter = () => {
-    const { visible, modalRef, toggleModal, closeModal, openModal } =
-        useModal();
+type props = {
+    filterOptions: filterOptions;
+    setCategory: (category: string) => void;
+    setRecruiting: () => void;
+    setNonRecruit: () => void;
+    setFilterOptions: Dispatch<SetStateAction<filterOptions>>;
+};
+const Filter = ({
+    filterOptions,
+    setCategory,
+    setRecruiting,
+    setNonRecruit,
+    setFilterOptions,
+}: props) => {
+    const { visible, modalRef, closeModal, openModal } = useModal();
     return (
-        <FilterContainer ref={modalRef} onClick={openModal}>
+        <FilterContainer onClick={openModal}>
             필터
             <FilterIcon />
+            {visible && (
+                <FilterDetail
+                    filterOptions={filterOptions}
+                    setCategory={setCategory}
+                    setRecruiting={setRecruiting}
+                    setNonRecruit={setNonRecruit}
+                    setFilterOptions={setFilterOptions}
+                    closeModal={closeModal}
+                    ref={modalRef}
+                />
+            )}
         </FilterContainer>
     );
 };
