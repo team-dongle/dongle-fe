@@ -1,34 +1,13 @@
 import { categoryList } from "@/constants/categoryList";
 import { filterOptions } from "@/types/main";
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import styled from "styled-components";
 
-interface props {
+type props = {
     filterOptions: filterOptions;
-    setState: Dispatch<SetStateAction<filterOptions>>;
-}
-const Category = ({ filterOptions, setState }: props) => {
-    const setCategory = (category: string) => {
-        if (category == "전체") {
-            console.log(filterOptions);
-            setState((prev) => ({
-                ...prev,
-                category: categoryList,
-            }));
-            if (filterOptions.category.includes("전체"))
-                setState((prev) => ({
-                    ...prev,
-                    category: [],
-                }));
-        } else
-            setState((prev) => ({
-                ...prev,
-                category: prev.category.includes(category)
-                    ? prev.category.filter((c) => c !== category)
-                    : [...prev.category, category],
-            }));
-    };
-
+    setCategory: (category: string) => void;
+};
+const Category = ({ filterOptions, setCategory }: props) => {
     return (
         <CategoryUl>
             {categoryList.map((category, index) => {
