@@ -1,4 +1,5 @@
 import { categoryList } from "@/constants/categoryList";
+import { theme } from "@/styles/theme";
 import { filterOptions } from "@/types/main";
 import React from "react";
 import styled from "styled-components";
@@ -34,11 +35,11 @@ const Category = ({ filterOptions, setCategory }: props) => {
 export default Category;
 
 const CategoryUl = styled.ul`
-    @media (max-width: 768px) {
+    @media (max-width: ${({ theme }) => theme.device.laptop}) {
         display: none;
     }
     font-size: 17px;
-    color: #555555;
+    color: ${({ theme }) => theme.device.darkGary};
     display: flex;
     flex-direction: row;
     justify-content: space-between;

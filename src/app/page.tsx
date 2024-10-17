@@ -1,13 +1,16 @@
 "use client";
 
 import { Container } from "@/component/common/Container";
-import { styled } from "styled-components";
+import { styled, ThemeProvider } from "styled-components";
 import Card from "@/component/ui/main/Card";
 import Category from "@/component/ui/main/Category";
 import CategoryInput from "@/component/ui/main/CategoryInput";
 import Filter from "@/component/ui/main/Filter";
 import { clubNames } from "@/constants/mocks";
 import { useFilter } from "@/hooks/useFilter";
+import { useState } from "react";
+import Link from "next/link";
+import { theme } from "@/styles/theme";
 
 export default function Home() {
     const {
@@ -17,41 +20,43 @@ export default function Home() {
         setNonRecruiting,
         setFilterOptions,
     } = useFilter();
+
+    const [inputValue, setInputValue] = useState("");
+
     return (
-        <Container>
-            <CategoryInput />
-            <CategoryAndFilter>
-                <Category
-                    filterOptions={filterOptions}
-                    setCategory={setCategory}
-                />
-                <Filter
-                    filterOptions={filterOptions}
-                    setCategory={setCategory}
-                    setRecruiting={setRecruiting}
-                    setNonRecruit={setNonRecruiting}
-                    setFilterOptions={setFilterOptions}
-                />
-            </CategoryAndFilter>
-            <MainContainer>
-                <MainUl>
-                    {clubNames.map((index) => {
-                        return <Card key={index} />;
-                    })}
-                </MainUl>
-            </MainContainer>
-        </Container>
+        <ThemeProvider theme={theme}>
+            <Container>
+                <CategoryInput setInputValue={setInputValue} />
+                <CategoryAndFilter>
+                    <Category
+                        filterOptions={filterOptions}
+                        setCategory={setCategory}
+                    />
+                    <Filter
+                        filterOptions={filterOptions}
+                        setCategory={setCategory}
+                        setRecruiting={setRecruiting}
+                        setNonRecruit={setNonRecruiting}
+                        setFilterOptions={setFilterOptions}
+                    />
+                </CategoryAndFilter>
+                <MainContainer>
+                    <MainUl>
+                        {clubNames.map((e, index) => {
+                            return (
+                                <Link key={index} href={`/detail/${e}`}>
+                                    <Card />
+                                </Link>
+                            );
+                        })}
+                    </MainUl>
+                </MainContainer>
+            </Container>
+        </ThemeProvider>
     );
 }
 
 const MainContainer = styled.div`
-    overflow-y: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-
-    &::-webkit-scrollbar {
-        display: none;
-    }
     width: 100%;
     height: auto;
     display: flex;
@@ -67,10 +72,10 @@ const MainUl = styled.ul`
     display: grid;
     place-items: center;
     grid-template-columns: repeat(1, 1fr);
-    @media (min-width: 640px) {
+    @media (min-width: ${({ theme }) => theme.device.tablet}) {
         grid-template-columns: repeat(2, 1fr);
     }
-    @media (min-width: 1024px) {
+    @media (min-width: ${({ theme }) => theme.device.laptop}) {
         grid-template-columns: repeat(3, 1fr);
     }
 `;

@@ -103,7 +103,7 @@ const FilterDetail = (
 export default forwardRef(FilterDetail);
 
 const FilterContainer = styled.div`
-    @media (max-width: 640px) {
+    @media (max-width: ${({ theme }) => theme.device.mobile}) {
         background-color: rgba(0, 0, 0, 0);
         width: 100%;
         bottom: 0;

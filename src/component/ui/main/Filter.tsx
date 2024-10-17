@@ -42,11 +42,11 @@ const Filter = ({
 export default Filter;
 
 const FilterContainer = styled.div`
-    @media (max-width: 768px) {
-        color: #555555;
+    @media (max-width: ${({ theme }) => theme.device.laptop}) {
+        color: ${({ theme }) => theme.device.darkGray};
     }
     cursor: pointer;
-    color: #1d1d1d;
+    color: ${({ theme }) => theme.device.black};
     gap: 2px;
     display: flex;
     flex-direction: row;
