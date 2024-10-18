@@ -28,13 +28,14 @@ export default Card;
 
 const Border = styled.li`
     display: flex;
-    width: 320px;
-    height: 101px;
+    gap: 84px;
     background-color: #ffffff;
     list-style: none;
     border-radius: 10px;
     border: 1px solid #f4f4f4;
     padding: 24px;
+    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
 `;
 

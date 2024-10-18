@@ -36,3 +36,13 @@ export const clubNames: string[] = [
     "코마",
     "M.I.C",
 ];
+
+export const crapas: Club = {
+    name: "신민규",
+    category: "문예",
+    contact: "010-1234-5678",
+    location: "학생회관 3층",
+    sns: "",
+    recruitPeriod: undefined,
+    isRecruiting: false,
+};
