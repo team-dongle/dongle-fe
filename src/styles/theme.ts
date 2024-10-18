@@ -3,5 +3,10 @@ export const theme = {
         darkGray: "#555555",
         black: "#1D1D1D",
     },
-    device: { tablet: "768px", laptop: "1024px", mobile: "375px" },
+    device: {
+        desktop: "1440px",
+        tablet: "768px",
+        laptop: "1024px",
+        mobile: "375px",
+    },
 };
